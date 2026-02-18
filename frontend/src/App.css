@@ -1,64 +1,102 @@
-/* Layout wrappers used across pages */
+/* Auth Pages */
 
 .auth-page {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.auth-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  opacity: 0.05;
+  z-index: 0;
 }
 
 .auth-card {
   background: var(--color-surface);
-  border-radius: 16px;
-  box-shadow: var(--shadow-lg);
-  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: 3rem 2.5rem;
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--color-border-light);
 }
 
 .auth-card h1 {
-  font-size: 1.65rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.875rem;
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .auth-card .subtitle {
   color: var(--color-text-secondary);
-  margin-bottom: 1.75rem;
-  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
 
 .auth-card .form-group {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.25rem;
 }
 
 .auth-card label {
   display: block;
-  font-size: 0.85rem;
-  font-weight: 500;
-  margin-bottom: 0.35rem;
-  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
 }
 
 .auth-card .btn-primary {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.875rem;
   margin-top: 0.5rem;
   font-size: 1rem;
+  font-weight: 600;
 }
 
 .auth-card .error-msg {
   color: var(--color-danger);
-  font-size: 0.85rem;
-  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  margin-top: 1rem;
   text-align: center;
+  padding: 0.75rem;
+  background: var(--color-danger-light);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-danger);
+}
+
+.auth-card .success-msg {
+  color: var(--color-success);
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  text-align: center;
+  padding: 0.75rem;
+  background: var(--color-success-light);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-success);
 }
 
 .auth-card .switch-link {
   text-align: center;
-  margin-top: 1.25rem;
-  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  font-size: 0.9375rem;
   color: var(--color-text-secondary);
 }
 
@@ -66,16 +104,17 @@
   color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
+  transition: var(--transition);
 }
 
 .auth-card .switch-link a:hover {
   text-decoration: underline;
 }
 
-/* Dashboard layout */
+/* Dashboard Layout */
 
 .dashboard {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
 }
@@ -84,12 +123,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-border-light);
 }
 
 .dashboard-header h1 {
-  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
   font-weight: 700;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .dashboard-header .user-info {
@@ -99,39 +145,110 @@
 }
 
 .dashboard-header .user-badge {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, #e0e7ff 100%);
+  color: var(--color-primary-dark);
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.875rem;
   font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
 .section-title {
-  font-size: 1.15rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-border);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-border-light);
+  color: var(--color-text);
 }
 
 .card {
   background: var(--color-surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  padding: 1.5rem;
+  padding: 1.75rem;
   margin-bottom: 1rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-light);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border);
+}
+
+.card h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-text);
 }
 
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-@media (max-width: 700px) {
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--color-text-secondary);
+  background: var(--color-border-light);
+  border-radius: var(--radius);
+  border: 2px dashed var(--color-border);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.error-msg {
+  color: var(--color-danger);
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-danger-light);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-danger);
+  margin-bottom: 1rem;
+}
+
+.success-msg {
+  color: var(--color-success);
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-success-light);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-success);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1.5rem 1rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
   .grid-2 {
     grid-template-columns: 1fr;
+  }
+
+  .auth-card {
+    padding: 2rem 1.5rem;
   }
 }

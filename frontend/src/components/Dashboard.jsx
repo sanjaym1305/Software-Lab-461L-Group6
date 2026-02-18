@@ -30,7 +30,12 @@ export default function Dashboard() {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>HaaS Dashboard</h1>
+        <div>
+          <h1>HaaS Dashboard</h1>
+          <p style={{ fontSize: "0.875rem", color: "var(--color-text-secondary)", marginTop: "0.25rem" }}>
+            Manage your projects and hardware resources
+          </p>
+        </div>
         <div className="user-info">
           <span className="user-badge">{user.userId}</span>
           <button className="btn-outline" onClick={logoutUser}>
@@ -39,11 +44,11 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {error && <p className="error-msg" style={{ marginBottom: "1rem" }}>{error}</p>}
+      {error && <div className="error-msg">{error}</div>}
 
-      <section style={{ marginBottom: "2rem" }}>
+      <section style={{ marginBottom: "2.5rem" }}>
         <h2 className="section-title">Projects</h2>
-        <div className="grid-2" style={{ marginBottom: "1rem" }}>
+        <div className="grid-2" style={{ marginBottom: "1.5rem" }}>
           <CreateProject onCreated={refresh} />
           <JoinProject onJoined={refresh} />
         </div>

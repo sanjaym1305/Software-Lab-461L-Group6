@@ -30,7 +30,7 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <h1>Welcome Back</h1>
-        <p className="subtitle">Sign in to your HaaS account</p>
+        <p className="subtitle">Sign in to your HaaS account to continue</p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="userId">User ID</label>
@@ -41,6 +41,7 @@ export default function Login() {
               onChange={(e) => setUserId(e.target.value)}
               placeholder="Enter your user ID"
               required
+              autoComplete="username"
             />
           </div>
           <div className="form-group">
@@ -52,6 +53,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
               required
+              autoComplete="current-password"
             />
           </div>
           <button type="submit" className="btn-primary" disabled={loading}>

@@ -41,7 +41,7 @@ export default function Register() {
     <div className="auth-page">
       <div className="auth-card">
         <h1>Create Account</h1>
-        <p className="subtitle">Sign up for a new HaaS account</p>
+        <p className="subtitle">Sign up for a new HaaS account to get started</p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="userId">User ID</label>
@@ -50,8 +50,9 @@ export default function Register() {
               type="text"
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
-              placeholder="Choose a user ID"
+              placeholder="Choose a unique user ID"
               required
+              autoComplete="username"
             />
           </div>
           <div className="form-group">
@@ -61,8 +62,9 @@ export default function Register() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Create a password"
+              placeholder="Create a secure password"
               required
+              autoComplete="new-password"
             />
           </div>
           <div className="form-group">
@@ -74,6 +76,7 @@ export default function Register() {
               onChange={(e) => setConfirm(e.target.value)}
               placeholder="Confirm your password"
               required
+              autoComplete="new-password"
             />
           </div>
           <button type="submit" className="btn-primary" disabled={loading}>

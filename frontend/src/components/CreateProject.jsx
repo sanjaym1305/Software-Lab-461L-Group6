@@ -27,41 +27,44 @@ export default function CreateProject({ onCreated }) {
 
   return (
     <div className="card">
-      <h3 style={{ marginBottom: "0.75rem", fontSize: "1rem", fontWeight: 600 }}>
-        Create New Project
-      </h3>
+      <h3>Create New Project</h3>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Project ID"
-          value={projectId}
-          onChange={(e) => setProjectId(e.target.value)}
-          required
-          style={{ marginBottom: "0.5rem" }}
-        />
-        <input
-          type="text"
-          placeholder="Project Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          style={{ marginBottom: "0.5rem" }}
-        />
-        <input
-          type="text"
-          placeholder="Description (optional)"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          style={{ marginBottom: "0.75rem" }}
-        />
+        <div className="form-group">
+          <label htmlFor="projectId">Project ID</label>
+          <input
+            id="projectId"
+            type="text"
+            placeholder="Enter unique project ID"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="projectName">Project Name</label>
+          <input
+            id="projectName"
+            type="text"
+            placeholder="Enter project name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="projectDesc">Description (optional)</label>
+          <input
+            id="projectDesc"
+            type="text"
+            placeholder="Brief description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
         <button type="submit" className="btn-primary" disabled={loading}>
           {loading ? "Creating..." : "Create Project"}
         </button>
-        {error && (
-          <p style={{ color: "var(--color-danger)", fontSize: "0.82rem", marginTop: "0.5rem" }}>
-            {error}
-          </p>
-        )}
+        {error && <div className="error-msg" style={{ marginTop: "0.75rem" }}>{error}</div>}
       </form>
     </div>
   );

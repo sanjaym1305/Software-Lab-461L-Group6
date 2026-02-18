@@ -14,9 +14,12 @@ export default function JoinProject({ onJoined }) {
     setLoading(true);
     try {
       await joinProject(projectId);
-      setSuccess(`Joined project "${projectId}"`);
+      setSuccess(`Successfully joined project "${projectId}"`);
       setProjectId("");
-      onJoined();
+      setTimeout(() => {
+        setSuccess("");
+        onJoined();
+      }, 2000);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -26,31 +29,24 @@ export default function JoinProject({ onJoined }) {
 
   return (
     <div className="card">
-      <h3 style={{ marginBottom: "0.75rem", fontSize: "1rem", fontWeight: 600 }}>
-        Join Existing Project
-      </h3>
+      <h3>Join Existing Project</h3>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter Project ID to join"
-          value={projectId}
-          onChange={(e) => setProjectId(e.target.value)}
-          required
-          style={{ marginBottom: "0.75rem" }}
-        />
+        <div className="form-group">
+          <label htmlFor="joinProjectId">Project ID</label>
+          <input
+            id="joinProjectId"
+            type="text"
+            placeholder="Enter project ID to join"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
+            required
+          />
+        </div>
         <button type="submit" className="btn-outline" disabled={loading}>
           {loading ? "Joining..." : "Join Project"}
         </button>
-        {error && (
-          <p style={{ color: "var(--color-danger)", fontSize: "0.82rem", marginTop: "0.5rem" }}>
-            {error}
-          </p>
-        )}
-        {success && (
-          <p style={{ color: "var(--color-success)", fontSize: "0.82rem", marginTop: "0.5rem" }}>
-            {success}
-          </p>
-        )}
+        {error && <div className="error-msg" style={{ marginTop: "0.75rem" }}>{error}</div>}
+        {success && <div className="success-msg" style={{ marginTop: "0.75rem" }}>{success}</div>}
       </form>
     </div>
   );
