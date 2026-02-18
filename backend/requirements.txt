@@ -1,0 +1,8 @@
+Flask==3.1.0
+Flask-Cors==5.0.1
+pymongo==4.11.3
+python-dotenv==1.1.0
+bcrypt==4.3.0
+PyJWT==2.10.1
+dnspython==2.7.0
+pytest==8.3.4
