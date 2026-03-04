@@ -20,7 +20,7 @@ A web application for managing hardware resources as a service. Users can create
 | Backend   | Python / Flask     |
 | Database  | MongoDB            |
 | Auth      | bcrypt + JWT       |
-| Testing   | pytest             |
+| Testing   | pytest + GHA       |
 
 ## Project Structure
 
