@@ -1,24 +1,21 @@
 import pytest
-from pymongo import MongoClient
+import mongomock
 
 from app import create_app
 
 
 @pytest.fixture()
 def app():
-    """Create a test app backed by a temporary MongoDB database."""
+    """Create a test app backed by an in-memory MongoDB database."""
     test_config = {
         "TESTING": True,
-        "MONGODB_URI": "mongodb://localhost:27017",
         "DB_NAME": "haas_test_db",
     }
     application = create_app(test_config)
-
+    
     yield application
 
-    client = MongoClient(test_config["MONGODB_URI"])
-    client.drop_database(test_config["DB_NAME"])
-    client.close()
+    application.config["db"].client.drop_database(test_config["DB_NAME"])
 
 
 @pytest.fixture()

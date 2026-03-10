@@ -14,7 +14,8 @@ def create_app(test_config=None):
 
     if test_config:
         app.config.update(test_config)
-        db_client = MongoClient(test_config.get("MONGODB_URI", config.MONGODB_URI))
+        import mongomock
+        db_client = mongomock.MongoClient()
         db_name = test_config.get("DB_NAME", "haas_test_db")
     else:
         db_client = MongoClient(config.MONGODB_URI)
