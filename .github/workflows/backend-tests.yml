@@ -33,4 +33,4 @@ jobs:
           FLASK_ENV: testing
           JWT_SECRET_KEY: ci-test-secret
           MONGO_URI: mongodb://localhost:27017/test
-        run: pytest tests/test_auth.py -v
+        run: pytest tests/ -v
