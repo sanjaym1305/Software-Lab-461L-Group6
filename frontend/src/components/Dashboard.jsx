@@ -18,10 +18,16 @@ export default function Dashboard() {
       const [proj, hw] = await Promise.all([getProjects(), getHardware()]);
       setProjects(proj);
       setHardware(hw);
+
+      // Refresh the selected project state to show updated hardware counts
+      if (selectedProject) {
+        const updated = proj.find((p) => p.projectId === selectedProject.projectId);
+        if (updated) setSelectedProject(updated);
+      }
     } catch (err) {
       setError(err.message);
     }
-  }, []);
+  }, [selectedProject]);
 
   useEffect(() => {
     refresh();
