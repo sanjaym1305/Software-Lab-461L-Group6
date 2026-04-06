@@ -2,7 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from pymongo import MongoClient
 
-from backend import config
+import config as config
 from routes.auth import auth_bp
 from routes.projects import projects_bp
 from routes.hardware import hardware_bp
