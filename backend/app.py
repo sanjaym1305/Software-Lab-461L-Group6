@@ -2,10 +2,10 @@ from flask import Flask
 from flask_cors import CORS
 from pymongo import MongoClient
 
-import config
-from routes.auth import auth_bp
-from routes.projects import projects_bp
-from routes.hardware import hardware_bp
+from backend import config
+from backend.routes.auth import auth_bp
+from backend.routes.projects import projects_bp
+from backend.routes.hardware import hardware_bp
 
 
 def create_app(test_config=None):
