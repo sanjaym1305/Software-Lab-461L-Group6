@@ -9,7 +9,7 @@ def app():
     """Create a test app backed by a temporary MongoDB database."""
     test_config = {
         "TESTING": True,
-        "MONGODB_URI": "mongodb://localhost:27017",
+        "MONGODB_URI": "mongodb+srv://sanjaym13_db:Universe113_@softwarelabgroup6.fwowcy3.mongodb.net/?appName=SoftwareLabGroup6",
         "DB_NAME": "haas_test_db",
     }
     application = create_app(test_config)
