@@ -1,12 +1,12 @@
 from flask import Blueprint, request, jsonify, current_app
 
-from models.project import (
+from ..models.project import (
     create_project,
     get_user_projects,
     get_project,
     join_project,
 )
-from routes.auth import get_current_user
+from .auth import get_current_user
 
 projects_bp = Blueprint("projects", __name__)
 

@@ -2,8 +2,8 @@ from flask import Blueprint, request, jsonify, current_app
 import jwt
 import datetime
 
-from models.user import create_user, authenticate_user
-
+#from models.user import create_user, authenticate_user
+from ..models.user import create_user, authenticate_user
 auth_bp = Blueprint("auth", __name__)
 
 

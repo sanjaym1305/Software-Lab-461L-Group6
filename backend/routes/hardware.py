@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify, current_app
 
-from models.hardware import get_all_hardware, checkout_hardware, checkin_hardware
-from models.project import get_project, update_hw_checkout
-from routes.auth import get_current_user
+from ..models.hardware import get_all_hardware, checkout_hardware, checkin_hardware
+from ..models.project import get_project, update_hw_checkout
+from ..routes.auth import get_current_user
 
 hardware_bp = Blueprint("hardware", __name__)
 

@@ -1,4 +1,4 @@
-from utils.encryption import hash_password, check_password
+from ..utils.encryption import hash_password, check_password
 
 
 def create_user(db, user_id: str, password: str) -> dict:
