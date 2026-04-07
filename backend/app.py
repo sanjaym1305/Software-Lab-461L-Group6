@@ -50,6 +50,6 @@ def _initialize_hardware(db):
                 {"name": name, "capacity": capacity, "availability": capacity}
             )
 
-application = create_app()
+app = create_app()
 if __name__ == "__main__":
-    application.run(debug=True, port=5050)
+    app.run(debug=True, port=5050)
