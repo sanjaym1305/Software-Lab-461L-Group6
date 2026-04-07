@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "http://localhost:5050",
+        target: "https://softwarelabgroup6l-41bc8282f2ee.herokuapp.com",
         changeOrigin: true,
       },
     },
