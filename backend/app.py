@@ -6,7 +6,7 @@ import config
 from routes.auth import auth_bp
 from routes.projects import projects_bp
 from routes.hardware import hardware_bp
-
+application = create_app()
 
 def create_app(test_config=None):
     app = Flask(__name__)
@@ -50,7 +50,7 @@ def _initialize_hardware(db):
                 {"name": name, "capacity": capacity, "availability": capacity}
             )
 
-application = create_app()
+
 if __name__ == "__main__":
     
     application.run(debug=True, port=5050)
