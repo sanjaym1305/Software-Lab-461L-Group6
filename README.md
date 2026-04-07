@@ -130,7 +130,7 @@ pytest tests/ -v
 
 | Variable          | Description                          | Default                         |
 |-------------------|--------------------------------------|---------------------------------|
-| `MONGODB_URI`     | MongoDB connection string            | `mongodb://localhost:27017/haas_db` |
+| `MONGODB_URI`     | MongoDB connection string            | `MongoDB Atlas URI` |
 | `JWT_SECRET_KEY`  | Secret for signing JWT tokens        | `dev-secret-key-change-in-production` |
 | `HWSET1_CAPACITY` | Initial capacity for HWSet1          | `100`                           |
 | `HWSET2_CAPACITY` | Initial capacity for HWSet2          | `100`                           |
