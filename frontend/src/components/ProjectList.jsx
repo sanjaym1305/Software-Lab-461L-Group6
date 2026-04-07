@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 export default function ProjectList({ projects, selectedProject, onSelect }) {
-  // Local, optimistic selected id to avoid UI flicker when parent updates
   const [localSelectedId, setLocalSelectedId] = useState(selectedProject?.projectId ?? null);
 
-  // Keep localSelectedId in sync when the parent confirms a selection change
   useEffect(() => {
     setLocalSelectedId(selectedProject?.projectId ?? null);
   }, [selectedProject?.projectId]);
@@ -25,7 +23,6 @@ export default function ProjectList({ projects, selectedProject, onSelect }) {
   return (
     <div>
       {projects.map((proj) => {
-        // Use the local optimistic value first; fall back to the prop when local is null
         const isSelected = (localSelectedId ?? selectedProject?.projectId) === proj.projectId;
         return (
           <div
@@ -40,7 +37,6 @@ export default function ProjectList({ projects, selectedProject, onSelect }) {
               transform: isSelected ? "scale(1.01)" : undefined,
             }}
             onClick={() => {
-              // Immediately mark as selected locally to avoid flicker while parent processes
               setLocalSelectedId(proj.projectId);
               onSelect(proj);
             }}
