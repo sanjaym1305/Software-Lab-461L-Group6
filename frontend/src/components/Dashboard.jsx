@@ -10,7 +10,8 @@ export default function Dashboard() {
   const { user, logoutUser } = useAuth();
   const [projects, setProjects] = useState([]);
   const [hardware, setHardware] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
+  const selectedProject = projects.find((p) => p.projectId === selectedProjectId) || null;
   const [error, setError] = useState("");
 
   const refresh = useCallback(async () => {
@@ -18,16 +19,10 @@ export default function Dashboard() {
       const [proj, hw] = await Promise.all([getProjects(), getHardware()]);
       setProjects(proj);
       setHardware(hw);
-
-      // Refresh the selected project state to show updated hardware counts
-      if (selectedProject) {
-        const updated = proj.find((p) => p.projectId === selectedProject.projectId);
-        if (updated) setSelectedProject(updated);
-      }
     } catch (err) {
       setError(err.message);
     }
-  }, [selectedProject]);
+  }, []);
 
   useEffect(() => {
     refresh();
@@ -61,7 +56,7 @@ export default function Dashboard() {
         <ProjectList
           projects={projects}
           selectedProject={selectedProject}
-          onSelect={setSelectedProject}
+          onSelect={(p) => setSelectedProjectId(p.projectId)}
         />
       </section>
 

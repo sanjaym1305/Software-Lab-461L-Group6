@@ -108,7 +108,7 @@ function HardwareCard({ hw, selectedProject, onUpdate }) {
               height: "100%",
               width: `${usedPercent}%`,
               borderRadius: "5px",
-              background: `linear-gradient(90deg, ${availabilityColor} 0%, ${availabilityColor}dd 100%)`,
+              background: `linear-gradient(90deg, ${availabilityColor} 0%, ${availabilityColor} 100%)`,
               transition: "width 0.4s ease",
               boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
             }}
