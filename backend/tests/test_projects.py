@@ -66,3 +66,46 @@ def test_join_project(client, auth_header):
 def test_unauthenticated_access(client):
     resp = client.get("/api/projects")
     assert resp.status_code == 401
+
+
+def test_project_detail_success(client, auth_header):
+    client.post(
+        "/api/projects",
+        json={"projectId": "p1", "name": "P1", "description": ""},
+        headers=auth_header,
+    )
+    resp = client.get("/api/projects/p1", headers=auth_header)
+    assert resp.status_code == 200
+    assert resp.get_json()["projectId"] == "p1"
+
+
+def test_project_detail_not_found(client, auth_header):
+    resp = client.get("/api/projects/nonexistent", headers=auth_header)
+    assert resp.status_code == 404
+
+
+def test_project_detail_forbidden(client, auth_header):
+    client.post(
+        "/api/projects",
+        json={"projectId": "p1", "name": "P1", "description": ""},
+        headers=auth_header,
+    )
+
+    reg = client.post(
+        "/api/register",
+        json={"userId": "intruder", "password": "password"},
+    )
+    token = reg.get_json()["token"]
+    header = {"Authorization": f"Bearer {token}"}
+
+    resp = client.get("/api/projects/p1", headers=header)
+    assert resp.status_code == 403
+
+
+def test_create_project_missing_fields(client, auth_header):
+    resp = client.post(
+        "/api/projects",
+        json={"name": "Missing ID"},
+        headers=auth_header,
+    )
+    assert resp.status_code == 400

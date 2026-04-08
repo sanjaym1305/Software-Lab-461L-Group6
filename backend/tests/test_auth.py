@@ -47,3 +47,13 @@ def test_login_missing_password(client):
     client.post("/api/register", json={"userId": "newUser", "password": "password123"})
     resp = client.post("/api/login", json={"userId": "newUser"})
     assert resp.status_code == 400
+
+
+def test_auth_invalid_token(client):
+    resp = client.get("/api/projects", headers={"Authorization": "Bearer not-a-real-token"})
+    assert resp.status_code == 401
+
+
+def test_auth_missing_bearer(client):
+    resp = client.get("/api/projects", headers={"Authorization": "FakeType token"})
+    assert resp.status_code == 401

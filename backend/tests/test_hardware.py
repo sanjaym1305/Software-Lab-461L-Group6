@@ -120,3 +120,41 @@ def test_hardware_shared_across_projects(client, auth_header):
     resp = client.get("/api/hardware", headers=auth_header)
     hw1 = next(h for h in resp.get_json() if h["name"] == "HWSet1")
     assert hw1["availability"] == 10
+
+
+def test_checkout_invalid_quantity(client, auth_header):
+    client.post(
+        "/api/projects",
+        json={"projectId": "p1", "name": "P1", "description": ""},
+        headers=auth_header,
+    )
+    resp = client.post(
+        "/api/hardware/checkout",
+        json={"projectId": "p1", "hwSet": "HWSet1", "quantity": -5},
+        headers=auth_header,
+    )
+    assert resp.status_code == 400
+
+
+def test_checkout_invalid_hardware_set(client, auth_header):
+    client.post(
+        "/api/projects",
+        json={"projectId": "p1", "name": "P1", "description": ""},
+        headers=auth_header,
+    )
+    resp = client.post(
+        "/api/hardware/checkout",
+        json={"projectId": "p1", "hwSet": "HWSet3", "quantity": 10},
+        headers=auth_header,
+    )
+    # The route returns 400 because ValueError is raised
+    assert resp.status_code == 400
+
+
+def test_checkout_missing_fields(client, auth_header):
+    resp = client.post(
+        "/api/hardware/checkout",
+        json={"projectId": "p1", "quantity": 10},
+        headers=auth_header,
+    )
+    assert resp.status_code == 400

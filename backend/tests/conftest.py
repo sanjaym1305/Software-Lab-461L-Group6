@@ -1,24 +1,27 @@
 import pytest
 from pymongo import MongoClient
+import mongomock
 
 from app import create_app
 
 
 @pytest.fixture()
-def app():
+def app(monkeypatch):
     """Create a test app backed by a temporary MongoDB database."""
     test_config = {
         "TESTING": True,
         "MONGODB_URI": "mongodb://localhost:27017",
         "DB_NAME": "haas_test_db",
     }
+    import app as my_app
+    monkeypatch.setattr(my_app, "MongoClient", mongomock.MongoClient)
+    
     application = create_app(test_config)
 
     yield application
 
-    client = MongoClient(test_config["MONGODB_URI"])
-    client.drop_database(test_config["DB_NAME"])
-    client.close()
+    mock_client = mongomock.MongoClient(test_config["MONGODB_URI"])
+    mock_client.drop_database(test_config["DB_NAME"])
 
 
 @pytest.fixture()
