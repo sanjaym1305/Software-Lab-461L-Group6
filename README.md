@@ -7,7 +7,7 @@ A web application for managing hardware resources as a service. Users can create
 ## Team
 
 - Manas Pathak – Frontend development and UI integration
-- Eshan Mehdiratta – Backend API development and system integration
+- Eshan Mehdiratta – Backend API development and system integration, the goat
 - Pranav Krishnan – Database design and persistence logic
 - Sanjay Margabandu – Infrastructure, deployment planning, and DevOps support
 - Rohan Siva – Testing strategy, validation, and documentation
